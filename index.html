@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Nossa História · Antori &amp; Maria">
+<meta name="theme-color" content="#4a1426">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%E2%9D%A4%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<title>Nossa História · Antori &amp; Maria</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&amp;family=Karla:wght@400;600&amp;display=swap">
+<style>
+:root{--bg:#4a1426;--bg2:#2e0b18;--paper:#fbf5ea;--ink:#3a2326;--accent:#8c2447;--gold:#b8893b;--line:#e3d5bb;--btn:#f6e7c8;--btnink:#3a1020;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#22080f;--bg2:#12040a;--paper:#2b1d20;--ink:#f2e6d4;--accent:#eb93ae;--gold:#d9b068;--line:#44313a}}
+:root[data-theme="dark"]{--bg:#22080f;--bg2:#12040a;--paper:#2b1d20;--ink:#f2e6d4;--accent:#eb93ae;--gold:#d9b068;--line:#44313a}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100vh;background:radial-gradient(120% 80% at 50% 0,var(--bg),var(--bg2));background-color:var(--bg2);color:var(--ink);font-family:Karla,system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+main{max-width:480px;margin:0 auto;padding:28px 18px 140px;perspective:1100px}
+.panel{background:var(--paper);border:1px solid var(--line);border-top:2px solid var(--gold);padding:28px 24px 30px;margin:0 auto;text-align:center;transform-origin:top center;transform:rotateX(-100deg);opacity:0;height:0;overflow:hidden;padding-top:0;padding-bottom:0;transition:transform 1.3s cubic-bezier(.2,.8,.2,1),opacity .7s}
+.panel.open{transform:none;opacity:1;height:auto;overflow:visible;padding-top:28px;padding-bottom:30px;box-shadow:0 18px 40px -18px rgba(0,0,0,.6)}
+.panel+.panel{margin-top:-1px;background-image:linear-gradient(to bottom,rgba(0,0,0,.08),transparent 28px)}
+.cover{padding-top:44px;padding-bottom:44px}
+h1{font:italic 700 clamp(44px,13vw,60px)/1 "Cormorant Garamond",serif;color:var(--accent);margin:8px 0 12px}
+h2{font:700 25px/1.2 "Cormorant Garamond",serif;color:var(--accent);margin:14px 0 10px}
+.k{font-size:14px;color:var(--gold);font-weight:600;letter-spacing:.04em}
+p{font:500 20px/1.55 "Cormorant Garamond",serif;margin:0 0 12px}
+.q{font-style:italic;font-size:22px}
+.sub{font-size:15px;opacity:.75}
+svg.sc{width:100%;max-width:300px;height:auto;margin:0 auto;display:block}
+.line{opacity:0;transform:translateY(8px);transition:opacity .9s,transform .9s}
+.line.in{opacity:1;transform:none}
+.panel p{text-align:left}.cover p,.panel p.q:last-child{text-align:center}
+.sig{font:italic 700 28px "Cormorant Garamond",serif;color:var(--accent);margin-top:16px}
+#bar{position:fixed;left:0;right:0;bottom:0;padding:14px 18px calc(14px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;gap:8px;background:linear-gradient(to top,var(--bg2) 55%,transparent);z-index:5}
+button{font:600 17px Karla,sans-serif;background:var(--btn);color:var(--btnink);border:0;border-radius:999px;padding:14px 30px;min-width:230px;cursor:pointer;box-shadow:0 6px 20px -6px rgba(0,0,0,.6)}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+button:active{transform:scale(.97)}
+#dots{display:flex;gap:7px}#dots i{width:7px;height:7px;border-radius:50%;background:var(--btn);opacity:.3;transition:opacity .4s}#dots i.on{opacity:1}
+.heart{position:fixed;bottom:-30px;color:var(--accent);pointer-events:none;z-index:20;animation:up 5s linear forwards}
+@keyframes up{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}
+@media (prefers-reduced-motion:reduce){.panel{transition:opacity .5s;transform:none}.heart{display:none}}
+</style>
+</head>
+<body>
+<main id="m"></main>
+<div id="bar"><div id="dots"></div><button id="b">Toca para abrir</button></div>
+<script>
+const sk="#e9c4a6",ln="#3a2326";
+const girl=(w)=>w?`<path d="M62 54h28l12 88H50z" fill="#fff" stroke="${ln}"/><circle cx="76" cy="38" r="13" fill="#2a1d1d"/><path d="M62 34q14-22 28 0l4 22-36 0z" fill="#fff" opacity=".8" stroke="${ln}" stroke-width=".8"/>`:`<rect x="61" y="52" width="30" height="50" rx="10" fill="#fff" stroke="${ln}"/><circle cx="76" cy="38" r="13" fill="#2a1d1d"/><ellipse cx="76" cy="62" rx="4" ry="26" fill="#2a1d1d" transform="translate(0 -4)"/><rect x="59" y="58" width="34" height="34" rx="8" fill="#e8b4c4" stroke="${ln}"/><rect x="63" y="102" width="26" height="40" fill="#333"/>`;
+const boy=(f)=>`<rect x="110" y="50" width="34" height="52" rx="10" fill="${f?"#4b5068":"#fff"}" stroke="${ln}"/><circle cx="127" cy="34" r="14" fill="#1d1717"/>${f?`<rect x="112" y="102" width="30" height="40" fill="#3a3f55"/><g><circle cx="146" cy="96" r="6" fill="#e58aa5"/><circle cx="140" cy="102" r="6" fill="#f6c6d4"/><circle cx="148" cy="104" r="5" fill="#fff"/><path d="M142 108l-2 16" stroke="#4d7a3f" stroke-width="3"/></g>`:`<rect x="112" y="56" width="30" height="40" rx="6" fill="#222"/><rect x="112" y="102" width="30" height="40" fill="#3a3f55"/>`}`;
+const scene=(n)=>`<svg class="sc" viewBox="0 0 200 150" role="img" aria-label="Antori e Maria de costas">${girl(n==2)}${boy(n==2)}${n==1?`<path d="M91 100q10 8 19 0" fill="none" stroke="${sk}" stroke-width="5" stroke-linecap="round"/>`:""}</svg>`;
+const P0=[
+{c:1,s:()=>scene(0),k:"Dois caminhos, uma promessa",t:"Nossa História",h1:1,a:["Antori & Maria"],sub:"3 de novembro de 2026 · o dia em que tudo começou"}
+];
+const S=(x)=>x.trim().split("\n");
+const P=[P0[0],
+{k:"Capítulo I",t:"Antes de nós, Deus já conhecia a nossa história",s:()=>scene(0),a:S(`Há histórias que começam por acaso, outras começam com um olhar, uma conversa inesperada ou um encontro que parecia não ter qualquer importância. Mas existem histórias que, quando olhamos para trás, dão-nos a sensação de que Deus já estava a preparar tudo muito antes de percebermos o que estava a acontecer.
+A nossa é uma dessas histórias.
+Talvez nenhum de nós imaginasse a dimensão daquilo que estava prestes a nascer. Talvez não soubéssemos que, entre tantas pessoas no mundo, encontraríamos um no outro alguém com quem desejaríamos dividir os nossos dias, os nossos planos, as nossas preocupações e os nossos maiores sonhos.
+Mas a vida tem uma maneira muito bonita de nos surpreender.
+E foi assim que os nossos caminhos se encontraram.
+Maria, quero que saibas que não te vejo apenas como alguém que chegou à minha vida. Vejo-te como alguém que trouxe novos significados para ela. Alguém com quem comecei a imaginar coisas que antes pareciam distantes. Alguém que me faz pensar não apenas no presente, mas em tudo aquilo que ainda podemos construir.
+Não sei quantas páginas Deus já escreveu sobre nós, mas tenho uma certeza: quero viver cada uma delas contigo.
+E então chegou o dia 3 de novembro de 2026.
+Uma data que talvez, para o resto do mundo, seja apenas mais um dia no calendário. Mas que, para mim, ganhou um significado especial.
+Entre o nervosismo, a expectativa e a esperança, fiz uma escolha. E tu, Maria, disseste sim.
+Talvez não tenhas percebido naquele instante, mas aquele sim tornou-se uma das respostas mais bonitas que a vida já me deu.
+Não foi apenas o início de um relacionamento. Foi o início de uma decisão: a decisão de conhecer-te cada vez mais, de cuidar de ti, de respeitar os teus sentimentos e de descobrir contigo o verdadeiro significado de caminhar ao lado de alguém.
+Naquele dia não ganhei apenas uma namorada.
+Ganhei uma pessoa com quem quero partilhar o meu mundo.
+E, se pudesse voltar atrás, faria tudo novamente, com o mesmo nervosismo, a mesma esperança e o mesmo desejo de ouvir a tua resposta.
+Porque, entre tantas possibilidades que a vida me poderia oferecer, eu escolheria começar esta história contigo outra vez.`)},
+{k:"Capítulo II",t:"Apaixonar-me por ti também é conhecer-te todos os dias",s:()=>scene(1),a:S(`Maria, uma das coisas mais bonitas de amar alguém é perceber que o amor não está apenas nos grandes acontecimentos.
+Está nos pequenos detalhes.
+Está nas mensagens inesperadas, nas conversas que parecem não ter fim, nas brincadeiras, nos momentos em que rimos sem motivo e até naquelas pequenas implicâncias que, por vezes, só nós conseguimos compreender.
+Está na vontade de saber como foi o teu dia, se estás bem, se comeste, se alguma coisa te preocupa ou se simplesmente precisas de alguém que te escute.
+Quero conhecer todas as tuas versões.
+A Maria que acorda cheia de energia e a Maria que tem dias em que não quer falar com ninguém. A Maria que sorri por pequenas coisas e aquela que, às vezes, precisa de um abraço sem ter de explicar o motivo.
+Quero conhecer os teus sonhos mais ambiciosos, os teus medos mais silenciosos e aquelas vontades que talvez ainda não tenhas contado a ninguém.
+Quero ser alguém diante de quem não precises de fingir que está tudo bem.
+Não quero amar apenas os teus dias bonitos. Quero aprender a cuidar do nosso amor também nos dias em que a vida não colaborar.
+Porque amar-te não significa esperar que sejas perfeita. Significa compreender que somos duas pessoas diferentes, com histórias, sentimentos, opiniões e maneiras próprias de ver o mundo.
+E é precisamente aí que quero encontrar a beleza da nossa relação: na capacidade de continuarmos a escolher um ao outro, mesmo quando pensamos de maneira diferente.
+Quero ser o teu namorado, mas também o teu amigo.
+Quero ser aquele com quem podes conversar sobre tudo, desde os assuntos mais importantes até às coisas mais absurdas do teu dia.
+Quero que tenhas liberdade para seres tu mesma.
+E, acima de tudo, quero que nunca tenhas de questionar se és amada, respeitada e valorizada nesta relação.`)},
+{k:"Capítulo III",t:"Não prometemos que será fácil, prometemos que valerá a pena",s:()=>scene(1),a:S(`Seria bonito dizer que, daqui para a frente, tudo será perfeito.
+Que nunca teremos desentendimentos, que nunca ficaremos chateados, que nunca haverá momentos de silêncio ou dias em que um não consiga compreender completamente o outro.
+Mas isso não seria uma história verdadeira.
+Somos humanos. Vamos cometer erros, vamos aprender, vamos descobrir coisas novas sobre nós e, certamente, teremos momentos em que precisaremos de respirar fundo e recordar por que razão começámos.
+Haverá dias em que o cansaço falará mais alto. Dias em que os problemas financeiros, profissionais, familiares ou pessoais poderão ocupar demasiado espaço nas nossas cabeças.
+Talvez existam momentos em que os nossos planos demorem mais do que esperávamos. Talvez algumas conquistas exijam sacrifícios que ainda nem imaginamos.
+Mas quero que guardemos uma coisa no coração: não somos adversários.
+Somos uma equipa.
+Quando houver um problema, não quero que a nossa primeira reação seja procurar quem tem culpa. Quero que procuremos uma solução.
+Quando um de nós errar, quero que exista humildade para reconhecer, coragem para pedir desculpa e maturidade para perdoar.
+Quando um estiver cansado, que o outro saiba oferecer descanso.
+Quando um estiver a perder a esperança, que o outro recorde os sonhos que ainda temos por realizar.
+Quero que aprendamos a discutir sem nos destruirmos, a discordar sem perdermos o respeito e a falar sem ferirmos aquilo que temos de mais precioso.
+Não quero vencer discussões e perder-te emocionalmente.
+Prefiro que, no final de um dia difícil, consigamos sentar-nos, conversar, compreender-nos e encontrar novamente o caminho um para o outro.
+Porque o nosso amor não precisa de ser perfeito para ser extraordinário.
+Precisa de ser verdadeiro.
+E quero que, independentemente da tempestade, saibamos sempre onde encontrar abrigo: um no outro.`)},
+{k:"Capítulo IV",t:"Os nossos sonhos não serão apenas teus ou meus. Serão nossos.",s:()=>scene(1),a:S(`Existe uma parte de mim que sorri sempre que imagina o futuro.
+Não apenas porque desejo alcançar grandes coisas, mas porque gosto de imaginar como será quando pudermos olhar para trás e perceber tudo aquilo que conseguimos construir juntos.
+Imagino-nos a trabalhar pelos nossos objetivos, a criar oportunidades, a desenvolver projetos e a conquistar uma vida cada vez melhor.
+Imagino as nossas conversas sobre investimentos, negócios, viagens, casa, família e todos aqueles planos que hoje ainda parecem estar apenas no papel.
+Imagino-nos a celebrar pequenas vitórias que, para outras pessoas, talvez não signifiquem muito, mas que para nós terão um valor enorme.
+O primeiro grande projeto concretizado.
+A primeira conquista que exigiu meses de dedicação.
+A primeira viagem que planeámos durante tanto tempo.
+A nossa primeira casa, construída ou conquistada com o nosso esforço.
+E aquele momento especial em que olharemos um para o outro e diremos: conseguimos!
+Quero ver-te crescer, Maria.
+Quero apoiar as tuas ambições, incentivar os teus talentos e aplaudir cada conquista tua como se fosse minha.
+Não quero que abandones os teus sonhos para viveres os meus. Quero que tenhas os teus próprios objetivos e que encontremos maneiras de os aproximar dos nossos.
+Quero que sejamos dois indivíduos completos, mas que juntos consigamos construir algo ainda maior.
+Não quero ser apenas o homem que caminha ao teu lado. Quero ser também aquele que te incentiva a ir mais longe.
+E espero que também sejas essa força para mim.
+Porque prosperar juntos é muito mais bonito do que conquistar tudo sozinho e não ter com quem partilhar a felicidade.
+Quero que o nosso futuro tenha estabilidade, crescimento, tranquilidade e, acima de tudo, amor.
+Que nunca nos falte ambição para conquistar, humildade para aprender e gratidão para reconhecer as bênçãos que Deus nos concede.`)},
+{k:"Capítulo V",t:"A nossa casa terá mais do que paredes. Terá amor.",s:()=>scene(1),a:S(`Um dia, quando Deus permitir, quero olhar para uma casa e reconhecer nela muito mais do que um lugar onde dormimos.
+Quero reconhecer o nosso lar.
+Imagino uma casa com os nossos gostos, as nossas escolhas, as nossas fotografias e pequenos detalhes que contarão a nossa história.
+Uma casa onde o respeito seja natural, onde a paz seja prioridade e onde nunca falte espaço para conversar, rir e demonstrar carinho.
+Imagino os domingos tranquilos, os pequenos-almoços em família, os jantares depois de dias cansativos e aquelas noites em que ficaremos acordados a conversar sobre a vida.
+Imagino também os nossos filhos.
+Ainda não sei como serão os seus rostos, as suas personalidades ou com quem se parecerão mais. Mas gosto de imaginar que terão um lar onde serão amados, protegidos e ensinados a respeitar.
+Quero que cresçam a ver que o amor não é apenas dizer “amo-te”.
+É respeitar a mãe deles.
+É demonstrar carinho mesmo quando ninguém está a observar.
+É saber pedir desculpa.
+É cumprir promessas.
+É cuidar da família.
+É trabalhar para que nunca lhes falte o essencial, sem esquecer que a presença dos pais vale muito mais do que qualquer presente.
+Quero que os nossos filhos cresçam a compreender que o casamento não é uma competição, mas uma parceria.
+Que aprendam connosco que um homem pode ser forte e, ao mesmo tempo, carinhoso. Que uma mulher pode ser independente e, ao mesmo tempo, construir uma família. E que duas pessoas podem crescer individualmente sem deixar de crescer juntas.
+Quero que tenham orgulho da família que construímos.
+E quero que, mesmo quando forem adultos, encontrem na nossa casa um lugar para onde terão sempre vontade de voltar.`)},
+{k:"Capítulo VI",t:"O dia em que te verei vestida de branco",s:()=>scene(2),a:S(`Existe uma imagem que guardo na minha imaginação.
+Um dia de sol.
+Um dia especial, preparado com carinho, rodeado de pessoas que nos querem bem e de todas aquelas emoções que dificilmente conseguiremos explicar.
+Tu estarás vestida de branco.
+Talvez estejas nervosa, talvez estejas a sorrir, talvez os teus olhos estejam cheios de lágrimas.
+E eu estarei à tua espera.
+Não sei se conseguirei esconder a emoção. Provavelmente, ao ver-te caminhar na minha direção, todas as palavras que imaginei dizer desaparecerão por alguns segundos.
+Porque, naquele instante, não estarei apenas a ver uma mulher bonita vestida de noiva.
+Estarei a ver a mulher com quem decidi construir uma vida.
+A mulher que conheci como namorada, que aprendi a amar como amiga, que escolhi como parceira e que, naquele momento, estará diante de mim para se tornar minha esposa.
+Talvez me lembre imediatamente daquele 3 de novembro de 2026. Do início de tudo. Do nervosismo, da esperança e daquele primeiro sim.
+E pensarei em quantas coisas teremos vivido até chegarmos ali. Quantas conversas, quantos desafios, quantas conquistas, quantos abraços e quantas vezes teremos escolhido não desistir.
+Quando chegar a hora de fazer os nossos votos, não quero prometer-te uma vida sem dificuldades.
+Quero prometer-te uma vida em que nunca terás de enfrentar tudo sozinha.
+Prometo continuar a aprender a amar-te.
+Prometo respeitar a tua individualidade, proteger a nossa intimidade e cuidar da confiança que depositaste em mim.
+Prometo não deixar que a rotina nos faça esquecer o romance.
+Prometo continuar a conquistar-te, mesmo depois de já te ter conquistado.
+E prometo que, mesmo quando os nossos cabelos ficarem brancos e os nossos passos mais lentos, continuarei a olhar para ti com a mesma gratidão de quem teve a sorte de encontrar o amor da sua vida.`)},
+{k:"Capítulo VII",t:"Envelhecer contigo será também uma conquista",s:()=>scene(2),a:S(`Maria, há uma coisa que desejo mais do que uma fotografia bonita, uma grande festa ou uma vida cheia de bens materiais.
+Desejo ter tempo contigo.
+Tempo para viver.
+Tempo para viajar, descobrir lugares, experimentar coisas novas e criar memórias.
+Tempo para assistir às tuas conquistas, para celebrar os nossos aniversários e para continuar a descobrir novas razões para me apaixonar por ti.
+Quero que, daqui a muitos anos, ainda consigamos brincar um com o outro.
+Quero que ainda existam beijos inesperados, abraços demorados e mensagens carinhosas, mesmo quando estivermos na mesma casa.
+Quero que nunca percamos a curiosidade de saber como o outro está.
+Quero que continuemos a namorar, mesmo depois do casamento, depois dos filhos, depois das responsabilidades e de todas as fases que a vida nos trouxer.
+Porque não quero que o nosso relacionamento seja uma história bonita apenas no início.
+Quero que seja uma história que fique cada vez mais bonita com o passar dos anos.
+Talvez um dia estejamos sentados na varanda da nossa casa, a observar os nossos filhos já crescidos, e um deles pergunte:
+“Pai, como é que tu e a mãe começaram a namorar?”
+E eu vou sorrir.
+Talvez olhe para ti antes de responder, porque só tu e eu conheceremos todos os pequenos detalhes que fizeram daquela história algo tão especial.
+Depois direi:
+“Filho, tudo começou no dia 3 de novembro de 2026. Houve um momento em que o teu pai decidiu que queria construir algo bonito com a tua mãe. Ela disse sim, e eu nunca deixei de agradecer a Deus por aquela resposta.”
+E talvez a tua mãe acrescente algum detalhe, talvez me corrija numa parte da história ou simplesmente sorria.
+Mas, naquele instante, os nossos filhos compreenderão uma coisa: o amor que conhecem não apareceu do nada. Foi construído com escolhas, respeito, paciência, fé e dedicação.
+E essa será uma das maiores heranças que lhes poderemos deixar.`)},
+{k:"Capítulo VIII",t:"A minha escolha continua a ser tu",s:()=>scene(2),a:S(`Maria, se existe algo que quero que retires desta história, é que não estou à procura de uma mulher com quem simplesmente passar o tempo.
+Estou a construir, no meu coração, o desejo de uma vida contigo.
+Quero os teus melhores dias, mas também quero estar presente nos dias em que não souberes como sorrir.
+Quero celebrar as tuas vitórias, apoiar-te nas tuas dificuldades e lembrar-te da mulher incrível que és, sobretudo quando te esqueceres disso.
+Quero conhecer os teus silêncios, compreender as tuas emoções e aprender a linguagem do teu coração.
+Quero que tenhas orgulho de mim, não apenas pelas coisas que conquistar, mas pela maneira como te trato, pela forma como te respeito e pelo homem que me esforço para ser ao teu lado.
+Não te prometo que nunca vou errar.
+Prometo que não quero deixar de aprender.
+Não te prometo que todos os dias serão românticos.
+Prometo não deixar de procurar maneiras de te fazer sentir especial.
+Não te prometo riqueza imediata nem uma vida sem preocupações.
+Prometo trabalhar pelos nossos sonhos e não esquecer que o verdadeiro sucesso também está na paz que encontramos quando chegamos a casa.
+E não te prometo que saberei sempre o que dizer.
+Mas quero que saibas que estarei disposto a ouvir-te.
+Quero que sejas a minha namorada, a minha melhor amiga, a minha parceira de vida, a minha futura esposa e, se Deus assim permitir, a mãe dos nossos filhos.
+Quero que sejamos aquele casal que, mesmo depois de muitos anos, ainda consegue olhar um para o outro e pensar: fizemos uma boa escolha.
+E se algum dia a vida nos colocar diante de uma fase difícil, quero que nos lembremos de que a nossa história merece cuidado.
+Porque o amor não é apenas encontrar a pessoa certa.
+É também aprender a ser a pessoa certa para quem escolhemos amar.
+E eu quero continuar a ser essa pessoa para ti.`)},
+{k:"Epílogo",t:"E tudo começou com um SIM",s:()=>`<div style="font-size:54px;color:var(--accent)" aria-hidden="true">♥</div>`,a:S(`Se alguém me perguntasse qual foi o momento em que o meu futuro começou a ganhar um novo significado, eu saberia exatamente o que responder.
+Foi no dia 3 de novembro de 2026.
+Foi quando a Maria disse sim.
+Naquele dia não recebi uma garantia de que tudo seria fácil. Não recebi um mapa com todas as respostas nem uma promessa de que nunca enfrentaríamos dificuldades.
+Recebi algo muito mais bonito: a oportunidade de começar uma história contigo.
+E hoje, ao imaginar tudo aquilo que ainda nos espera, percebo que não preciso de conhecer todos os capítulos para desejar continuar a escrevê-los.
+Quero escrever contigo os capítulos das nossas conquistas, das nossas viagens, da nossa casa, do nosso casamento e da nossa família.
+Quero escrever os capítulos das nossas gargalhadas, dos nossos abraços, das nossas reconciliações e de todas aquelas pequenas coisas que farão a nossa vida valer a pena.
+Quero que um dia olhemos para trás e tenhamos orgulho não apenas daquilo que conquistámos, mas da maneira como nos tratámos durante o caminho.
+Que Deus seja sempre o centro da nossa relação, que nunca nos falte sabedoria para cuidar um do outro e que o nosso amor seja maior do que o nosso orgulho.
+Maria, talvez eu não consiga prever tudo o que a vida nos reserva.
+Mas existe uma coisa que posso dizer com toda a sinceridade:
+Se tiver de escolher novamente, entre todos os caminhos possíveis, quero continuar a escolher o caminho que me leva até ti.
+E, se Deus me conceder muitos anos de vida, quero ter a oportunidade de te dizer milhares de vezes aquilo que hoje escrevo nestas páginas:
+Ainda bem que disseste sim.
+Ainda bem que os nossos caminhos se cruzaram.
+Ainda bem que és tu.
+Com amor, hoje e em todos os amanhãs que Deus nos permitir viver.`),sig:"Antori Domingos ❤️ Maria de Sousa"},
+{k:"Uma última carta",t:"Para ti, Maria",s:()=>"",a:S(`Meu amor,
+Não sei se estas páginas conseguirão traduzir tudo aquilo que sinto, mas espero que consigas encontrar nelas um pouco do meu coração.
+Quero que guardes esta história. Não apenas pelo que está escrito, mas pelo que representa.
+Quero que a leias quando estiveres feliz, para te lembrares de que tens alguém que celebra a tua felicidade. E quero que a leias quando tiveres um dia difícil, para te lembrares de que não precisas de enfrentar o mundo sozinha.
+Não quero ser apenas uma bonita recordação na tua vida. Quero ser uma presença que te faça bem, um amor que te dê tranquilidade e um companheiro com quem possas construir os teus maiores sonhos.
+Hoje chamo-te minha namorada.
+Amanhã espero chamar-te minha esposa.
+E, um dia, espero que os nossos filhos te chamem mãe enquanto eu continuo a ter o privilégio de te chamar meu amor.
+Não sei quantas páginas terá a nossa história, mas espero que seja um livro longo, cheio de capítulos bonitos e com espaço para muitas novas memórias.
+A nossa história começou com um sim. O meu compromisso é continuar a merecer esse sim todos os dias.
+Amo-te, Maria.`),sig:"Do teu Antori ❤️"}];
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting&&x.intersectionRatio>.2){x.target.classList.add("in");io.unobserve(x.target)}}),{threshold:[.2,.5]});
+const m=document.getElementById("m"),b=document.getElementById("b"),d=document.getElementById("dots");let i=-1;
+P.forEach((p,n)=>{const e=document.createElement("section");e.className="panel"+(p.c?" cover":"");
+const L=(p.a||[]).map((x,j)=>`<p class="line l${j+1}${p.h1&&j==0?" q":""}${j==p.a.length-1&&!p.c?" q":""}">${x}</p>`).join("");
+e.innerHTML=`<div class="k">${p.k}</div>${p.h1?`<h1>${p.t}</h1>`:`<h2>${p.t}</h2>`}${p.s()}${L}${p.sub?`<p class="sub line l2">${p.sub}</p>`:""}${p.sig?`<div class="sig line l3">${p.sig}</div>`:""}`;
+m.appendChild(e);d.appendChild(document.createElement("i"))});
+document.querySelectorAll(".line").forEach(l=>io.observe(l));
+function hearts(){let n=0;const t=setInterval(()=>{const h=document.createElement("span");h.className="heart";h.textContent="♥";h.style.left=Math.random()*100+"vw";h.style.fontSize=14+Math.random()*26+"px";document.body.appendChild(h);setTimeout(()=>h.remove(),5200);if(++n>70)clearInterval(t)},160)}
+b.onclick=()=>{
+if(i>=P.length-1){location.reload();return}
+i++;const ps=m.children;ps[i].classList.add("open");
+[...d.children].forEach((x,k)=>x.classList.toggle("on",k<=i));
+setTimeout(()=>ps[i].scrollIntoView({behavior:"smooth",block:"start"}),250);
+b.textContent=i==P.length-1?"Ler outra vez":i==P.length-2?"Abrir a última dobra":"Abrir a próxima dobra";
+if(i>=P.length-2)hearts()};
+</script>
+</body>
+</html>
